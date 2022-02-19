@@ -1,125 +1,123 @@
 import React from 'react'
 import 'antd/dist/antd.css';
 import "./patients.css";
+import { useEffect, useState } from "react";
+import { Link, Navigate } from "react-router-dom";
+import { Menu, Dropdown } from "antd";
 import { Card, Avatar, Pagination } from 'antd';
 import SortOutlinedIcon from '@material-ui/icons/SortOutlined';
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
+import { useContext } from 'react';
+import { AuthContext } from '../../contexts/AuthContext';
 
 const Patients = () => {
     const { Meta } = Card;
+    const [page, setPage] = useState(1);
+    const [patient, setPatient] = useState([]);
+    const { token } = useContext(AuthContext)
+
+    useEffect(() => getAllPatient(), [page]);
+
+    let getAllPatient = () => {
+        fetch(`http://localhost:2345/patient?page=${page}&size=3`)
+            .then((d) => {
+                // console.log(d.json());
+                return d.json()
+            })
+            .then((d) => {
+                // console.log(d.items);
+                setPatient(d.items)
+            });
+    };
+    console.log(patient);
+    console.log(patient.length);
+
     return (
         <div><h1 style={{ textAlign: "center" }}><b>Patients Details</b></h1>
             <div className='sort'>
                 <SortOutlinedIcon ></SortOutlinedIcon>
                 <h3>Sort(Age)</h3>
             </div>
+            {/* <h1>Name of the Patient : <b>{patient[0].first_name}</b></h1>
+            <h2>Medicine Prescribed : <b>{patient[1].medicine} </b></h2>
+            <h3>Age : {patient[0].age}</h3> */}
             <div className='patients-card'>
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Dinesh"
+                        description="Dolo - 650"
                     />
-                </Card>
+                    <h4>Age : 27</h4>
+                    <h5>Gender : Male</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Selvan"
+                        description="Crocine"
                     />
-                </Card>
+                    <h4>Age : 66</h4>
+                    <h5>Gender : female</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Bhaskar"
+                        description="Dolo - 650"
                     />
-                </Card>
+                    <h4>Age : 27</h4>
+                    <h5>Gender : Male</h5>
+                </Card >
 
-            </div>
+            </div >
 
             <div className='patients-card'>
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Akash"
+                        description="Sputnik"
                     />
-                </Card>
+                    <h4>Age : 44</h4>
+                    <h5>Gender : Male</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Prithvi"
+                        description="Dolo - 650"
                     />
-                </Card>
+                    <h4>Age : 55</h4>
+                    <h5>Gender : female</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Suraj"
+                        description="Pills"
                     />
-                </Card>
+                    <h4>Age : 24</h4>
+                    <h5>Gender : female</h5>
+                </Card >
 
 
 
@@ -127,57 +125,41 @@ const Patients = () => {
 
             <div className='patients-card'>
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Ranjith"
+                        description="Dolo-croc"
                     />
-                </Card>
+                    <h4>Age : 17</h4>
+                    <h5>Gender : Male</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="vignesh"
+                        description="Vicks"
                     />
-                </Card>
+                    <h4>Age : 67</h4>
+                    <h5>Gender : Male</h5>
+                </Card >
 
-                <Card
+                < Card
                     style={{ width: 300 }}
-
-                    actions={[
-                        <SettingOutlined key="setting" />,
-                        <EditOutlined key="edit" />,
-                        <EllipsisOutlined key="ellipsis" />,
-                    ]}
-
                 >
                     <Meta
                         avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
-                        title="Card title"
-                        description="This is the description"
+                        title="Kumari"
+                        description="Paracetamol"
                     />
-                </Card>
-
+                    <h4>Age : 37</h4>
+                    <h5>Gender : female</h5>
+                </Card >
 
 
             </div>
@@ -188,3 +170,5 @@ const Patients = () => {
 }
 
 export default Patients
+
+

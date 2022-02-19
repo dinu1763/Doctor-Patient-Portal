@@ -5,6 +5,7 @@
     justify-content: space-evenly;
     margin-left: 30px;
     padding: 25px;
+    cursor: pointer;
 }
 .card{
     margin-left: 15px;

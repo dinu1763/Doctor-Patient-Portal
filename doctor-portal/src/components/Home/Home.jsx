@@ -11,7 +11,8 @@ const Home = () => {
         <div>
             <Navbar />
             <br />
-            <Patients />
+            <h1 style={{ textAlign: "center" }}> Doctors Can Click on Sign In to View all the Patients Details Associated</h1>
+            <img src="https://www.certifiedfinancialguardian.com/images/blog-wp-login.png" alt="" />
         </div>
     )
 }
